@@ -205,15 +205,12 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
-
-
-
 vim.opt.lazyredraw = true
 vim.opt.ttyfast = true
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
-vim.opt.synmaxcol = 300
-vim.opt.cursorline = false  -- Major improvement on 4K
+vim.opt.synmaxcol = 150
+vim.opt.cursorline = false -- Major improvement on 4K
 vim.opt.list = false
 vim.opt.wrap = false
 -- [[ Basic Autocommands ]]
@@ -546,7 +543,7 @@ require('lazy').setup({
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
 
-          vim.lsp.handlers["$/progress"] = function() end
+          vim.lsp.handlers['$/progress'] = function() end
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
           map('grn', vim.lsp.buf.rename, '[R]e[n]ame')
