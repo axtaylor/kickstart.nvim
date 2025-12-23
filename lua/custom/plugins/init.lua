@@ -56,24 +56,49 @@ return {
     priority = 1000,
     config = function()
         require('catppuccin').setup({
-            transparent_background = true,
+            transparent_background = true,  -- Keep main background transparent
             
             custom_highlights = function(colors)
                 return {
-                    LineNr = { fg = "#C4D0F8" },  -- Line numbers
-                    CursorLineNr = { fg = "#C4D0F8" },  -- Current line number
+                    LineNr = { fg = "#C4D0F8" },
+                    CursorLineNr = { fg = "#C4D0F8" },
+                    
+                    -- UI windows background
+                    NormalFloat = { bg = "#323D47" },  -- Floating windows
+                    FloatBorder = { bg = "#323D47" },  -- Floating window borders
+                    
+                    -- Mason specific
+                    MasonNormal = { bg = "#323D47" },
+                    MasonHeader = { bg = "#323D47" },
+                    
+                    -- Lazy plugin manager
+                    LazyNormal = { bg = "#323D47" },
+                    
+                    -- Telescope
+                    TelescopeNormal = { bg = "#323D47" },
+                    TelescopeBorder = { bg = "#323D47" },
+                    
+                    -- Other popups
+                    Pmenu = { bg = "#323D47" },  -- Completion menu
+                    PmenuSel = { bg = "#2a2b36" },  -- Selected item in completion
                 }
             end,
         })
         
         vim.cmd.colorscheme 'catppuccin-frappe'
         
-        -- Additional override to ensure it applies
+        -- Additional overrides for UI elements
+        vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#323D47' })
+        vim.api.nvim_set_hl(0, 'FloatBorder', { bg = '#323D47' })
+        vim.api.nvim_set_hl(0, 'MasonNormal', { bg = '#323D47' })
+        vim.api.nvim_set_hl(0, 'LazyNormal', { bg = '#323D47' })
+        vim.api.nvim_set_hl(0, 'Pmenu', { bg = '#323D47' })
+        
+        -- Line numbers
         vim.api.nvim_set_hl(0, 'LineNr', { fg = '#C4D0F8' })
         vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#C4D0F8' })
     end,
 },
-
 
 
 
@@ -108,8 +133,10 @@ return {
                 window = {
                     width = 35,
                     position = "left",
+
                 }
             },
+            close_if_last_window = false
         })
 
         -- Remove cursor line highlight in neo-tree
@@ -119,7 +146,7 @@ return {
                 vim.opt_local.cursorline = false
             end,
         })
-        
+
         -- Clear the highlight groups and set text to white
         vim.api.nvim_create_autocmd('ColorScheme', {
             pattern = '*',
@@ -226,14 +253,14 @@ return {
        local neoscroll = require('neoscroll')
         
         -- Mouse scroll mapping
-            --vim.keymap.set({'n', 'v', 'x'}, '<ScrollWheelUp>', function()
-            --    neoscroll.scroll(-15, { hide_cursor=true, duration = 225,})
-            --end)
+            vim.keymap.set({'n', 'v', 'x'}, '<ScrollWheelUp>', function()
+                neoscroll.scroll(-15, { move_cursor = false, duration = 225,})
+            end)
 
 
-            --vim.keymap.set({'n', 'v', 'x'}, '<ScrollWheelDown>', function()
-            --    neoscroll.scroll(15, { hide_cursor=true, duration = 225,})
-            --end)
+            vim.keymap.set({'n', 'v', 'x'}, '<ScrollWheelDown>', function()
+                neoscroll.scroll(15, { move_cursor = false, duration = 225})
+            end)
 
         end,
     },
