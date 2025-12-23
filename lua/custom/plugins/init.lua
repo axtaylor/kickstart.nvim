@@ -5,8 +5,19 @@
 return {
 
 
-
-
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        config = function()
+            require('lualine').setup({
+                options = {
+                    theme = 'OceanicNext',  -- or specify a theme like 'gruvbox', 'tokyonight', etc.
+                    component_separators = { left = '', right = ''},
+                    section_separators = { left = '', right = ''},
+                },
+            })
+        end,
+    },
 
 
     {
@@ -32,22 +43,36 @@ return {
         require('onedarkpro').setup({
             transparent = true,
         })
-        vim.cmd.colorscheme 'onedark'
+        -- vim.cmd.colorscheme 'onedark'
         end,
     },
 
-    {
-        "catppuccin/nvim",
-        priority = 1000,
-        config = function()
+
+
+
+
+{
+    "catppuccin/nvim",
+    priority = 1000,
+    config = function()
         require('catppuccin').setup({
-
-            transparent = true,
+            transparent_background = true,
+            
+            custom_highlights = function(colors)
+                return {
+                    LineNr = { fg = "#C4D0F8" },  -- Line numbers
+                    CursorLineNr = { fg = "#C4D0F8" },  -- Current line number
+                }
+            end,
         })
-        -- vim.cmd.colorscheme 'catppuccin-latte'
-        end,
-    },
-
+        
+        vim.cmd.colorscheme 'catppuccin-frappe'
+        
+        -- Additional override to ensure it applies
+        vim.api.nvim_set_hl(0, 'LineNr', { fg = '#C4D0F8' })
+        vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#C4D0F8' })
+    end,
+},
 
 
 
@@ -57,86 +82,125 @@ return {
     require 'kickstart.plugins.neo-tree',
 
 
-    {
-        "nvim-neo-tree/neo-tree.nvim",
-        branch = "v2.x",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-tree/nvim-web-devicons",
-        },
+{
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-tree/nvim-web-devicons",
+    },
 
-        config = function()
-
+    config = function()
         require("neo-tree").setup({
-
             filesystem = {
-
                 filtered_items = {
-                    visible = true,  -- Show all files, including ignored ones
-                    hide_gitignored = false,  -- Don't hide git-ignored files
-                    -- follow_current_file = true,  -- Follow the current file in the tree
-
+                    visible = true,
+                    hide_gitignored = false,
                 },
 
                 git_status = {
-                    show_ignored = true,  -- Show git-ignored files and directories
-                    show_untracked = true,  -- Show untracked files
-                    show_modified = true,  -- Show modified files
-                    show_staged = true,  -- Show staged files
-
+                    show_ignored = true,
+                    show_untracked = true,
+                    show_modified = true,
+                    show_staged = true,
                 },
 
                 window = {
-                    width = 35,  -- Width of Neo-tree window
-                    position = "left",  -- Position of the window (left or right)
+                    width = 35,
+                    position = "left",
                 }
             },
         })
-        end,
+
+        -- Remove cursor line highlight in neo-tree
+        vim.api.nvim_create_autocmd('FileType', {
+            pattern = 'neo-tree',
+            callback = function()
+                vim.opt_local.cursorline = false
+            end,
+        })
+        
+        -- Clear the highlight groups and set text to white
+        vim.api.nvim_create_autocmd('ColorScheme', {
+            pattern = '*',
+            callback = function()
+                vim.api.nvim_set_hl(0, 'NeoTreeCursorLine', { bg = 'NONE' })
+                vim.api.nvim_set_hl(0, 'NeoTreeDirectoryName', { bg = 'NONE' })
+                vim.api.nvim_set_hl(0, 'NeoTreeFileName', { bg = 'NONE' })
+                
+                -- Set file info text (Size, Last Modified, etc.) to white
+                vim.api.nvim_set_hl(0, 'NeoTreeFileStats', { fg = '#ffffff', bg = 'NONE' })
+                vim.api.nvim_set_hl(0, 'NeoTreeFileStatsHeader', { fg = '#ffffff', bg = 'NONE' })
+                vim.api.nvim_set_hl(0, 'NeoTreeDimText', { fg = '#ffffff', bg = 'NONE' })
+                vim.api.nvim_set_hl(0, 'NeoTreeMessage', { fg = '#ffffff', bg = 'NONE' })
+            end,
+        })
+        
+        -- Apply immediately
+        vim.schedule(function()
+            vim.cmd('doautocmd ColorScheme')
+        end)
+    end,
+},
+
+
+
+
+
+
+{
+    'romgrk/barbar.nvim',
+    dependencies = {
+        'lewis6991/gitsigns.nvim',
+        'nvim-tree/nvim-web-devicons',
     },
 
-
-
-
-
-
-    {
-         'nvim-lualine/lualine.nvim',
-         dependencies = { 'nvim-tree/nvim-web-devicons' },
-
-    },
-
-
-
-
-
-
-    {
-        'romgrk/barbar.nvim',
-        dependencies = {
-            'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
-            'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+    init = function() vim.g.barbar_auto_setup = false end,
+    opts = {
+        sidebar_filetypes = {
+            NvimTree = true,
+            ['neo-tree'] = {event = 'BufWipeout'},
         },
-
-        init = function() vim.g.barbar_auto_setup = false end,
-        opts = {
-
-            sidebar_filetypes = {
-
-                NvimTree = true,
-                ['neo-tree'] = {event = 'BufWipeout'},
-
-            },
-
-        -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
-        -- animation = true,
-        -- insert_at_start = true,
-        -- …etc.
-        },
-
-        version = '^1.0.0', -- optional: only update when a new 1.x version is released
     },
 
+    config = function(_, opts)
+        require('barbar').setup(opts)
+        
+        -- Make all buffers look the same with transparent background
+        vim.api.nvim_create_autocmd('ColorScheme', {
+            pattern = '*',
+            callback = function()
+                -- Get foreground color from current buffer
+                local current = vim.api.nvim_get_hl(0, { name = 'BufferCurrent' })
+                
+                -- Set all buffer highlights to have same fg, no bg
+                local hl_groups = {
+                    'BufferInactive',
+                    'BufferInactiveIndex',
+                    'BufferInactiveMod',
+                    'BufferInactiveSign',
+                    'BufferInactiveTarget',
+                    'BufferVisible',
+                    'BufferVisibleIndex',
+                    'BufferVisibleMod',
+                    'BufferVisibleSign',
+                    'BufferVisibleTarget',
+                }
+                
+                for _, hl in ipairs(hl_groups) do
+                    vim.api.nvim_set_hl(0, hl, { fg = current.fg, bg = 'NONE' })
+                end
+            end,
+        })
+        
+        -- Apply immediately on startup
+        vim.schedule(function()
+            vim.cmd('doautocmd ColorScheme')
+        end)
+    end,
+
+    version = '^1.0.0',
+},
 
 
 
@@ -147,10 +211,6 @@ return {
             'jayp0521/mason-null-ls.nvim', -- ensure dependencies are installed
         }
     },
-
-
-
-
 
 
     {
@@ -166,19 +226,18 @@ return {
        local neoscroll = require('neoscroll')
         
         -- Mouse scroll mapping
-            vim.keymap.set({'n', 'v', 'x'}, '<ScrollWheelUp>', function()
-                neoscroll.scroll(-15, { hide_cursor=true, duration = 225,})
-            end)
+            --vim.keymap.set({'n', 'v', 'x'}, '<ScrollWheelUp>', function()
+            --    neoscroll.scroll(-15, { hide_cursor=true, duration = 225,})
+            --end)
 
 
-            vim.keymap.set({'n', 'v', 'x'}, '<ScrollWheelDown>', function()
-                neoscroll.scroll(15, { hide_cursor=true, duration = 225,})
-            end)
+            --vim.keymap.set({'n', 'v', 'x'}, '<ScrollWheelDown>', function()
+            --    neoscroll.scroll(15, { hide_cursor=true, duration = 225,})
+            --end)
 
         end,
     },
 
-    
 
 
 
