@@ -71,25 +71,19 @@ return {
       },
     }
 
-    -- Remove cursor line highlight in neo-tree
-    vim.api.nvim_create_autocmd('FileType', {
-      pattern = 'neo-tree',
-      callback = function()
-        vim.opt_local.cursorline = false
-      end,
-    })
-
     -- Clear the highlight groups and set file info text to white
     vim.api.nvim_create_autocmd('ColorScheme', {
       pattern = '*',
       callback = function()
-        vim.api.nvim_set_hl(0, 'NeoTreeCursorLine', { bg = 'NONE' })
+        --vim.api.nvim_set_hl(0, 'NeoTreeCursorLine', { bg = 'NONE' })
         vim.api.nvim_set_hl(0, 'NeoTreeDirectoryName', { bg = 'NONE' })
         vim.api.nvim_set_hl(0, 'NeoTreeFileName', { bg = 'NONE' })
         vim.api.nvim_set_hl(0, 'NeoTreeFileStats', { fg = '#ffffff', bg = 'NONE' })
         vim.api.nvim_set_hl(0, 'NeoTreeFileStatsHeader', { fg = '#ffffff', bg = 'NONE' })
         vim.api.nvim_set_hl(0, 'NeoTreeDimText', { fg = '#ffffff', bg = 'NONE' })
         vim.api.nvim_set_hl(0, 'NeoTreeMessage', { fg = '#ffffff', bg = 'NONE' })
+        -- vim.api.nvim_set_hl(0, 'NeoTreeGitIgnored', { fg = '#323D47', bg = 'NONE' })
+        vim.api.nvim_set_hl(0, 'NeoTreeWinSeparator', { fg = '#C4D0F8' })
       end,
     })
 

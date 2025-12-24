@@ -29,7 +29,8 @@ return {
           TelescopePromptTitle = { bg = '#323D47' }, -- Heading Bkg
           TelescopeResultsTitle = { bg = '#323D47' }, -- Heading Bkg
           TelescopeSelection = { bg = '#464C4F' }, -- Cursor Line
-          CursorLine = { bg = '#464C4F' },-- Cursor Line
+          CursorLine = { bg = '#707782' }, -- Cursor Line '#595F69' '#7e8590'
+          Visual = { bg = '#707782' },
 
           -- Other popups
           Pmenu = { bg = '#323D47' }, -- Completion menu
@@ -41,14 +42,14 @@ return {
     vim.cmd.colorscheme 'catppuccin-frappe'
 
     -- Additional overrides for UI elements
-    vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#323D47' })
-    vim.api.nvim_set_hl(0, 'FloatBorder', { bg = '#323D47' })
-    vim.api.nvim_set_hl(0, 'MasonNormal', { bg = '#323D47' })
-    vim.api.nvim_set_hl(0, 'LazyNormal', { bg = '#323D47' })
-    vim.api.nvim_set_hl(0, 'Pmenu', { bg = '#323D47' })
+    --vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#323D47' })
+    --vim.api.nvim_set_hl(0, 'FloatBorder', { bg = '#323D47' })
+    --vim.api.nvim_set_hl(0, 'MasonNormal', { bg = '#323D47' })
+    --vim.api.nvim_set_hl(0, 'LazyNormal', { bg = '#323D47' })
+    --vim.api.nvim_set_hl(0, 'Pmenu', { bg = '#323D47' })
 
     -- Line numbers
-    vim.api.nvim_set_hl(0, 'LineNr', { fg = '#C4D0F8' })
-    vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#C4D0F8' })
+    --vim.api.nvim_set_hl(0, 'LineNr', { fg = '#C4D0F8' })
+    --vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#C4D0F8' })
   end,
 }
