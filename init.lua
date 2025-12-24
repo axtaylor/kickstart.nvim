@@ -269,11 +269,12 @@ require('lazy').setup({
     'lewis6991/gitsigns.nvim',
     opts = {
       signs = {
-        add = { text = '+' },
-        change = { text = '~' },
+        add = { text = '┃' },
+        change = { text = '┃' },
         delete = { text = '_' },
         topdelete = { text = '‾' },
         changedelete = { text = '~' },
+        untracked = { text = '┆' },
       },
     },
   },
@@ -1019,8 +1020,8 @@ require('lazy').setup({
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.o.scrolloff = 1 -- Modified for smooth scrolling, default = 10
 
-vim.opt.maxmempattern = 4000  -- Max memory for pattern matching (default 1000)
-vim.opt.regexpengine = 1      -- Use old regex engine (can be faster)
+vim.opt.maxmempattern = 4000 -- Max memory for pattern matching (default 1000)
+vim.opt.regexpengine = 1 -- Use old regex engine (can be faster)
 
 -- Modified these settings for performance
 vim.opt.lazyredraw = true
@@ -1031,7 +1032,7 @@ vim.opt.timeoutlen = 300
 vim.opt.synmaxcol = 150 -- Max amount of columns to do syntax highliting at once (perf)
 vim.opt.cursorline = false -- Major improvement on 4K
 vim.opt.list = false -- Adds .... on empty whitespace
-vim.opt.wrap = true -- Wraps test when the terminal is too small
+vim.opt.wrap = false -- Wraps test when the terminal is too small
 
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
