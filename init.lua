@@ -155,12 +155,6 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
 
--- Show which line your cursor is on
-vim.o.cursorline = true
-
--- Minimal number of screen lines to keep above and below the cursor.
-vim.o.scrolloff = 10
-
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
@@ -205,14 +199,6 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
-vim.opt.lazyredraw = true
-vim.opt.ttyfast = true
-vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
-vim.opt.synmaxcol = 150
-vim.opt.cursorline = false -- Major improvement on 4K
-vim.opt.list = false
-vim.opt.wrap = false
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -949,11 +935,12 @@ require('lazy').setup({
   },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    branch = 'master',
+    branch = 'master', -- Added this from the Kickstart or else treesitter will not load.
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
+      -- Added Python
       ensure_installed = { 'python', 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
       -- Autoinstall languages that are not installed
       auto_install = true,
@@ -983,18 +970,22 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  require 'kickstart.plugins.debug',
+  -- require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'kickstart.plugins.transparent_theme',
+  require 'kickstart.plugins.lualine',
+  require 'kickstart.plugins.barbar',
+  require 'kickstart.plugins.neoscroll',
+  require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  { import = 'custom.plugins' },
+  -- { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
@@ -1021,6 +1012,30 @@ require('lazy').setup({
     },
   },
 })
+
+-- Show which line your cursor is on
+-- vim.o.cursorline = true
+
+-- Minimal number of screen lines to keep above and below the cursor.
+vim.o.scrolloff = 1 -- Modified for smooth scrolling, default = 10
+
+vim.opt.maxmempattern = 4000  -- Max memory for pattern matching (default 1000)
+vim.opt.regexpengine = 1      -- Use old regex engine (can be faster)
+
+-- Modified these settings for performance
+vim.opt.lazyredraw = true
+vim.opt.ttyfast = true
+vim.opt.updatetime = 250
+vim.opt.redrawtime = 1500
+vim.opt.timeoutlen = 300
+vim.opt.synmaxcol = 150 -- Max amount of columns to do syntax highliting at once (perf)
+vim.opt.cursorline = false -- Major improvement on 4K
+vim.opt.list = false -- Adds .... on empty whitespace
+vim.opt.wrap = false -- Wraps test when the terminal is too small
+
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_node_provider = 0
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
