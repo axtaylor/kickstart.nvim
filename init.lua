@@ -1031,7 +1031,7 @@ vim.opt.timeoutlen = 300
 vim.opt.synmaxcol = 150 -- Max amount of columns to do syntax highliting at once (perf)
 vim.opt.cursorline = false -- Major improvement on 4K
 vim.opt.list = false -- Adds .... on empty whitespace
-vim.opt.wrap = false -- Wraps test when the terminal is too small
+vim.opt.wrap = true -- Wraps test when the terminal is too small
 
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
