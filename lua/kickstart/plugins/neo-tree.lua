@@ -75,15 +75,10 @@ return {
     vim.api.nvim_create_autocmd('ColorScheme', {
       pattern = '*',
       callback = function()
-        --vim.api.nvim_set_hl(0, 'NeoTreeCursorLine', { bg = 'NONE' })
-        vim.api.nvim_set_hl(0, 'NeoTreeDirectoryName', { bg = 'NONE' })
-        vim.api.nvim_set_hl(0, 'NeoTreeFileName', { bg = 'NONE' })
-        vim.api.nvim_set_hl(0, 'NeoTreeFileStats', { fg = '#ffffff', bg = 'NONE' })
-        vim.api.nvim_set_hl(0, 'NeoTreeFileStatsHeader', { fg = '#ffffff', bg = 'NONE' })
-        vim.api.nvim_set_hl(0, 'NeoTreeDimText', { fg = '#ffffff', bg = 'NONE' })
-        vim.api.nvim_set_hl(0, 'NeoTreeMessage', { fg = '#ffffff', bg = 'NONE' })
-        -- vim.api.nvim_set_hl(0, 'NeoTreeGitIgnored', { fg = '#323D47', bg = 'NONE' })
-        vim.api.nvim_set_hl(0, 'NeoTreeWinSeparator', { fg = '#C4D0F8' })
+        vim.api.nvim_set_hl(0, 'NeoTreeFileName', { fg = '#ffffff' })
+
+        vim.api.nvim_set_hl(0, 'NeoTreeDotFile', { fg = '#919BBD' })
+        vim.api.nvim_set_hl(0, 'NeoTreeWinSeparator', { fg = '#ffffff' }) --# C4D0F8'
       end,
     })
 
@@ -91,5 +86,5 @@ return {
     vim.schedule(function()
       vim.cmd 'doautocmd ColorScheme'
     end)
-  end, -- This 'end' was missing!
+  end,
 }

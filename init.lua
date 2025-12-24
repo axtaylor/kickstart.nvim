@@ -975,7 +975,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.onedark',
+  -- require 'kickstart.plugins.nord',
   require 'kickstart.plugins.transparent_theme',
   require 'kickstart.plugins.lualine',
   require 'kickstart.plugins.barbar',

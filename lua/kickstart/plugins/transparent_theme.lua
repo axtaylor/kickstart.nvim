@@ -8,12 +8,16 @@ return {
 
       custom_highlights = function(colors)
         return {
-          LineNr = { fg = '#C4D0F8' },
-          CursorLineNr = { fg = '#C4D0F8' },
+          -- Text modifications
+          Normal = { fg = '#ffffff' }, -- Base text, mason...
+          ['@property'] = { fg = '#ffffff' }, -- IDE text base
+          ['@variable'] = { fg = '#ffffff' }, -- Ide text base two
+
+          -- Line number modifications
+          LineNr = { fg = '#ffffff' }, -- #C4D0F8
 
           -- UI windows background
           NormalFloat = { bg = '#323D47' }, -- Floating windows
-          -- FloatBorder = { bg = '#323D47' }, -- Floating window borders
 
           -- Mason specific
           MasonNormal = { bg = '#323D47' },
@@ -28,7 +32,11 @@ return {
           TelescopePreviewTitle = { bg = '#323D47' }, -- Heading Bkg
           TelescopePromptTitle = { bg = '#323D47' }, -- Heading Bkg
           TelescopeResultsTitle = { bg = '#323D47' }, -- Heading Bkg
-          TelescopeSelection = { bg = '#464C4F' }, -- Cursor Line
+          TelescopePromptPrefix = { fg = '#ffffff' },
+
+          -- Cursor Lines
+          TelescopeSelection = { bg = '#707782', fg = '#ffffff' }, -- Cursor Line
+          TelescopeSelectionCaret = { fg = '#ffffff', bg = '#707782' },
           CursorLine = { bg = '#707782' }, -- Cursor Line '#595F69' '#7e8590'
           Visual = { bg = '#707782' },
 
@@ -43,13 +51,5 @@ return {
 
     -- Additional overrides for UI elements
     --vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#323D47' })
-    --vim.api.nvim_set_hl(0, 'FloatBorder', { bg = '#323D47' })
-    --vim.api.nvim_set_hl(0, 'MasonNormal', { bg = '#323D47' })
-    --vim.api.nvim_set_hl(0, 'LazyNormal', { bg = '#323D47' })
-    --vim.api.nvim_set_hl(0, 'Pmenu', { bg = '#323D47' })
-
-    -- Line numbers
-    --vim.api.nvim_set_hl(0, 'LineNr', { fg = '#C4D0F8' })
-    --vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#C4D0F8' })
   end,
 }
