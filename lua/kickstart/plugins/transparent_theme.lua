@@ -12,6 +12,10 @@ return {
           Normal = { fg = '#ffffff' }, -- Base text, mason...
           ['@property'] = { fg = '#ffffff' }, -- IDE text base
           ['@variable'] = { fg = '#ffffff' }, -- Ide text base two
+          ['@string.documentation'] = { fg = '#A6D996' },
+          LspReferenceText = { bg = '#707782' },
+          LspReferenceRead = { bg = '#707782' },
+          LspReferenceWrite = { bg = '#707782' },
 
           -- Line number modifications
           LineNr = { fg = '#ffffff' }, -- #C4D0F8

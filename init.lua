@@ -975,8 +975,8 @@ require('lazy').setup({
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.nord',
-  require 'kickstart.plugins.transparent_theme',
+  require 'kickstart.plugins.github_theme',
+  -- require 'kickstart.plugins.transparent_theme',
   require 'kickstart.plugins.lualine',
   require 'kickstart.plugins.barbar',
   require 'kickstart.plugins.neoscroll',
@@ -1029,7 +1029,7 @@ vim.opt.lazyredraw = true
 vim.opt.ttyfast = true
 vim.opt.updatetime = 250
 vim.opt.redrawtime = 1500
-vim.opt.timeoutlen = 300
+--vim.opt.timeoutlen = 300
 vim.opt.synmaxcol = 150 -- Max amount of columns to do syntax highliting at once (perf)
 vim.opt.cursorline = false -- Major improvement on 4K
 vim.opt.list = false -- Adds .... on empty whitespace

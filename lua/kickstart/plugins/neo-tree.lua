@@ -76,9 +76,15 @@ return {
       pattern = '*',
       callback = function()
         vim.api.nvim_set_hl(0, 'NeoTreeFileName', { fg = '#ffffff' })
-
+        vim.api.nvim_set_hl(0, 'NeoTreeFileStats', { fg = '#ffffff', bg = 'NONE' })
+        vim.api.nvim_set_hl(0, 'NeoTreeFileStatsHeader', { fg = '#ffffff', bg = 'NONE' })
         vim.api.nvim_set_hl(0, 'NeoTreeDotFile', { fg = '#919BBD' })
         vim.api.nvim_set_hl(0, 'NeoTreeWinSeparator', { fg = '#ffffff' }) --# C4D0F8'
+        vim.api.nvim_set_hl(0, 'NeoTreeDirectoryName', { fg = '#ffffff' })
+        vim.api.nvim_set_hl(0, 'NeoTreeGitUntracked', { fg = '#1ABC21' }) --# C4D0F8'
+        vim.api.nvim_set_hl(0, 'NeoTreeDirectoryIcon', { fg = '#3CAEE9' })
+        vim.api.nvim_set_hl(0, 'NeoTreeGitModified', { fg = '#EFD4A0' })
+        vim.api.nvim_set_hl(0, 'NeoTreeGitIgnored', { fg = '#919BBD' })
       end,
     })
 
