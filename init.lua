@@ -950,7 +950,7 @@ require('lazy').setup({
         -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
         --  If you are experiencing weird indenting issues, add the language to
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-        additional_vim_regex_highlighting = { 'ruby' },
+        -- additional_vim_regex_highlighting = { 'ruby' },
       },
       indent = { enable = true, disable = { 'ruby' } },
     },
@@ -975,8 +975,8 @@ require('lazy').setup({
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
-  require 'kickstart.plugins.github_theme',
   -- require 'kickstart.plugins.transparent_theme',
+  require 'kickstart.plugins.github_theme',
   require 'kickstart.plugins.lualine',
   require 'kickstart.plugins.barbar',
   require 'kickstart.plugins.neoscroll',
@@ -1019,14 +1019,14 @@ require('lazy').setup({
 -- vim.o.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.o.scrolloff = 1 -- Modified for smooth scrolling, default = 10
+vim.o.scrolloff = 50 -- Modified for smooth scrolling, default = 10
 
 vim.opt.maxmempattern = 4000 -- Max memory for pattern matching (default 1000)
 vim.opt.regexpengine = 1 -- Use old regex engine (can be faster)
 
 -- Modified these settings for performance
 vim.opt.lazyredraw = true
-vim.opt.ttyfast = true
+--vim.opt.ttyfast = true
 vim.opt.updatetime = 250
 vim.opt.redrawtime = 1500
 --vim.opt.timeoutlen = 300
@@ -1035,9 +1035,9 @@ vim.opt.cursorline = false -- Major improvement on 4K
 vim.opt.list = false -- Adds .... on empty whitespace
 vim.opt.wrap = false -- Wraps test when the terminal is too small
 
-vim.g.loaded_perl_provider = 0
-vim.g.loaded_ruby_provider = 0
-vim.g.loaded_node_provider = 0
+--vim.g.loaded_perl_provider = 0
+--vim.g.loaded_ruby_provider = 0
+--vim.g.loaded_node_provider = 0
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
