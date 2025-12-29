@@ -18,6 +18,8 @@ return {
           ['@variable'] = { fg = '#ffffff' },
           ['@type.python'] = { fg = '#C8A2F3' },
           ['@constructor.python'] = { fg = '#C8A2F3' },
+          ['WarningMsg'] = { fg = '#3CAEE9' },
+          ['MasonHeader'] = { bg = '#323D47' },
 
           -- ─────────────────────────
           -- Text
