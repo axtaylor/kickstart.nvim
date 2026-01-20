@@ -942,7 +942,7 @@ require('lazy').setup({
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
       -- Added Python
-      ensure_installed = { 'python', 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = { 'cpp', 'python', 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -1041,3 +1041,19 @@ vim.opt.wrap = false -- Wraps test when the terminal is too small
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+--
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'c', 'cpp' },
+  callback = function()
+    -- 4-space indent
+    vim.bo.shiftwidth = 4
+    vim.bo.tabstop = 4
+    vim.bo.softtabstop = 4
+    vim.bo.expandtab = true
+
+    -- Disable C-style indent (the real cause)
+    vim.bo.cindent = false
+    vim.bo.smartindent = false
+    vim.bo.autoindent = false
+  end,
+})
