@@ -13,13 +13,13 @@ return {
     local neoscroll = require 'neoscroll'
 
     -- Mouse scroll mapping
-    vim.keymap.set({ 'n', 'v', 'x' }, '<ScrollWheelUp>', function()
-      neoscroll.scroll(-15, { move_cursor = false, duration = 250, performance_mode = true })
-    end)
+    --    vim.keymap.set({ 'n', 'v', 'x' }, '<ScrollWheelUp>', function()
+    --      neoscroll.scroll(-15, { move_cursor = false, duration = 250, performance_mode = true })
+    --    end)
 
-    vim.keymap.set({ 'n', 'v', 'x' }, '<ScrollWheelDown>', function()
-      neoscroll.scroll(15, { move_cursor = false, duration = 250, performance_mode = true })
-    end)
+    --    vim.keymap.set({ 'n', 'v', 'x' }, '<ScrollWheelDown>', function()
+    --      neoscroll.scroll(15, { move_cursor = false, duration = 250, performance_mode = true })
+    --    end)
 
     vim.keymap.set({ 'n', 'v', 'x' }, '<C-u>', function()
       neoscroll.scroll(-25, { move_cursor = false, duration = 400, performance_mode = true }) -- -15, 250.
