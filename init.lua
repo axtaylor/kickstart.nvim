@@ -1033,7 +1033,7 @@ vim.opt.redrawtime = 1500
 vim.opt.synmaxcol = 150 -- Max amount of columns to do syntax highliting at once (perf)
 vim.opt.cursorline = false -- Major improvement on 4K
 vim.opt.list = false -- Adds .... on empty whitespace
-vim.opt.wrap = false -- Wraps test when the terminal is too small
+vim.opt.wrap = true -- Wraps test when the terminal is too small
 
 --vim.g.loaded_perl_provider = 0
 --vim.g.loaded_ruby_provider = 0
@@ -1046,9 +1046,9 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'c', 'cpp' },
   callback = function()
     -- 4-space indent
-    vim.bo.shiftwidth = 4
-    vim.bo.tabstop = 4
-    vim.bo.softtabstop = 4
+    vim.bo.shiftwidth = 2
+    vim.bo.tabstop = 2
+    vim.bo.softtabstop = 2
     vim.bo.expandtab = true
 
     -- Disable C-style indent (the real cause)
